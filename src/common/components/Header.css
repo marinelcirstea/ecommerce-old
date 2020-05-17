@@ -1,0 +1,29 @@
+.header-top {
+  background-color: #007f61;
+}
+.header-top-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  padding: 0.25rem 1.5rem;
+  margin: auto;
+}
+
+.header-top__promo {
+  font-weight: bold;
+  color: white;
+}
+
+.header-top__pages-navigation {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+}
+
+.page-link {
+  padding: 1rem 0;
+  margin: auto 0 auto 0.5rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
