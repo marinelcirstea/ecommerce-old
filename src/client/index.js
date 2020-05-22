@@ -18,6 +18,8 @@ hydrate(
 
 if (module.hot) {
   module.hot.accept('../common/containers/App', () => {
+    // if(url.location!=='admin'){
+
     hydrate(
       <Provider store={store}>
         <BrowserRouter>
@@ -26,5 +28,6 @@ if (module.hot) {
       </Provider>,
       document.getElementById('root')
     );
+    // }
   });
 }

@@ -30,6 +30,7 @@ server
       const store = configureStore(preloadedState);
 
       // Render the component to a string
+
       const markup = renderToString(
         <Provider store={store}>
           <StaticRouter location={req.url} context={context}>
@@ -45,11 +46,10 @@ server
         redirect(301, context.url);
       } else {
         res.send(`<!doctype html>
-    <html lang="">
+    <html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charSet='utf-8' />
-        <title>Razzle Redux Example</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
           assets.client.css

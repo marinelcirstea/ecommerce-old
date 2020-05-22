@@ -1,0 +1,16 @@
+.product-page {
+  display: flex;
+  flex-direction: column;
+}
+.product-upper {
+  display: flex;
+  flex-direction: column;
+}
+.product-upper-top {
+  display: flex;
+}
+
+.product-upper-left,
+.product-upper-right {
+  width: 100%;
+}

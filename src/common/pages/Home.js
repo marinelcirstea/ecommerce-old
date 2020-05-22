@@ -1,23 +1,69 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import './Product/Products.css';
+
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { doClick } from '../redux/actions/click';
+import { getProducts } from '../redux/actions/product';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
+  const { products, loading } = props;
+  useEffect(() => {
+    if (products.length === 1) {
+      props.getProducts();
+    }
+    return () => {
+      // props.getProducts();
+    };
+  }, [products.length]);
+  // if (loading && products.length == 0) {
+  //   return <div className="loading-overlay">Loading..</div>;
+  // }
   return (
-    <>
-      <p>Welcome to Razzle.</p>
-      <Link to="about">About</Link>
-
-      <button onClick={props.doClick}>Click me</button>
-
-      <div>The value:{props.click}</div>
-    </>
+    <div>
+      <div className="products">
+        <div className="row">
+          {products.map((product) => {
+            return (
+              <div key={product.id} className="product">
+                <div className="product_inner">
+                  <Link to={`/product/${product.id}`}>
+                    <div className="product-img-wrapper">
+                      <img
+                        src={product.data.Picture}
+                        width="300"
+                        alt={product.data.ProductName}
+                      />
+                    </div>
+                  </Link>
+                  <p className="product-title">
+                    <Link to={`/product/${product.id}`}>
+                      {product.data.ProductName}
+                    </Link>
+                  </p>
+                  {/* <p>Size 7</p> */}
+                  <p className="product-price">
+                    <span>Price</span> £{product.data.UnitPrice}
+                  </p>
+                  <button className="add-to-cart-button">Add to basket</button>
+                </div>
+                {/* <div className="product_overlay">
+                    <h2>Added to basket</h2>
+                    <i className="fa fa-check"></i>
+                  </div> */}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="products-pagination"></div>
+    </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
-    click: state.click.click,
+    products: state.productReducer.products,
+    loading: state.productReducer.loading,
   };
 };
-export default connect(mapStateToProps, { doClick })(Home);
+export default connect(mapStateToProps, { getProducts })(Home);
